@@ -78,7 +78,6 @@ export const Sidebar = () => {
     <motion.div
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      whileHover="open"
       exit="closed"
       transition={{
         duration: 0.3,
