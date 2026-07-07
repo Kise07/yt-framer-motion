@@ -33,7 +33,7 @@ export const Navbar = () => {
             onMouseLeave={() => setHovered(null)}
             className="w-full relative group py-3 text-center text-xs text-neutral-500"
             href={item.href}
-            key={item.item}
+            key={item.title}
           >
             <span className="relative group-hover:text-neutral-400 text-neutral-500 z-20">
               {item.title}
