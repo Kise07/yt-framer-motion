@@ -1,101 +1,39 @@
 "use client";
-import { useAnimate, motion } from "motion/react";
+import { useAnimate, motion, AnimationSequence } from "motion/react";
 
 export const AnimationSequences = () => {
   const [scope, animate] = useAnimate();
-  const startAnimating = async () => {
+  const sequence: AnimationSequence = [
     // first phase of loader
-    await animate(
-      ".loader",
-      {
-        opacity: 1,
-        width: "2rem",
-      },
-      {
-        duration: 0.1,
-      },
-    );
-    await animate(
-      ".loader",
-      {
-        rotate: 360 * 4,
-      },
-      {
-        duration: 2,
-      },
-    );
+    [".loader", { opacity: [0, 1], width: "2rem" }, { duration: 0.1 }],
+    [".loader", { rotate: 360 * 4 }, { duration: 2 }],
     // second phase of loader
-    await animate(
-      ".loader",
-      {
-        opacity: 0,
-        scale: 0,
-      },
-      {
-        duration: 0.1,
-      },
-    );
+    [".loader", { opacity: [1, 0], scale: 0 }, { duration: 0.1, at: "-1.5" }],
     // text-disappearing
-    await animate(
-      ".text",
-      {
-        display: "none",
-      },
-      {
-        duration: 0.1,
-      },
-    );
+    [".text", { display: "none" }, { duration: 0.1, at: "-0.5" }],
     // first phase of button
-    await animate(
-      "button",
-      {
-        width: "5rem",
-        borderRadius: "1000px",
-      },
-      {
-        duration: 0.3,
-      },
-    );
+    ["button", { width: "5rem", borderRadius: "1000px" }, { duration: 0.3 }],
     // second phase of button
-    await animate(
+    [
       "button",
       {
         opacity: 1,
         scale: [1, 1.2, 0.8, 1],
         backgroundImage: "linear-gradient(to right, #00ff99, #00ccff)",
       },
-      {
-        duration: 0.8,
-      },
-    );
-    await animate(
+      { duration: 0.8 },
+    ],
+    [
       "button",
-      {
-        backgroundImage: "linear-gradient(to right, #00ff99, #00ccff)",
-      },
-      {
-        duration: 0.8,
-      },
-    );
+      { backgroundImage: "linear-gradient(to right, #00ff99, #00ccff)" },
+      { duration: 0.8 },
+    ],
     // second phase of check-icon
-    await animate(
-      ".check-icon",
-      {
-        opacity: 1,
-      },
-      {
-        duration: 0.1,
-      },
-    );
-    await animate(
-      ".check-icon path",
-      {
-        pathLength: 1,
-      },
-      {
-        duration: 0.3,
-      },
-    );
+    [".check-icon", { opacity: [0, 1] }, { duration: 0.1, at: "-1.4" }],
+    [".check-icon path", { pathLength: 1 }, { duration: 0.3 }],
+  ];
+  const startAnimating = async () => {
+    animate(sequence);
   };
 
   return (
