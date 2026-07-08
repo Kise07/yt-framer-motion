@@ -1,5 +1,5 @@
 "use client";
-import { useAnimate, motion } from "motion/react";
+import { useAnimate, motion, stagger } from "motion/react";
 import { useEffect } from "react";
 
 export const AnimatedText = () => {
@@ -7,19 +7,22 @@ export const AnimatedText = () => {
   const text =
     "Welcome to F*** C***. The first rule of F*** C*** is that you don't talk about F*** C***. The second rule of F*** C*** is that you don't talk about F*** C***.";
 
-  useEffect(() => {
-    startAnimating();
-  }, []);
+  // useEffect(() => {
+  //   startAnimating();
+  // }, []);
 
   const startAnimating = () => {
     animate(
       "span",
       {
         opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
       },
       {
-        duration: 1,
+        duration: 0.5,
         ease: "easeInOut",
+        delay: stagger(0.02),
       },
     );
   };
@@ -27,16 +30,27 @@ export const AnimatedText = () => {
   return (
     <div
       ref={scope}
-      className="max-w-4xl mx-auto font-bold text-4xl text-white"
+      className="max-w-2xl mx-auto font-bold text-4xl text-white"
     >
-      <motion.span
-        style={{
-          opacity: 0,
-        }}
-        className="inline-block"
+      <button
+        onClick={startAnimating}
+        className="bg-neutral-800 px-4 py-2 rounded-md cursor-pointer active:scale-110 transition dureation-200"
       >
-        {text}
-      </motion.span>
+        What is FC?
+      </button>
+      {text.split(" ").map((word, index) => (
+        <motion.span
+          style={{
+            opacity: 0,
+            filter: "blur(10px)",
+            y: 10,
+          }}
+          key={word + index}
+          className="inline-block"
+        >
+          {word} &nbsp;
+        </motion.span>
+      ))}
     </div>
   );
 };
