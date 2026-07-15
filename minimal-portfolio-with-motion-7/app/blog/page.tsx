@@ -1,7 +1,7 @@
 import { Container } from "@/app/components/container";
 import { Metadata } from "next";
 import { getBlogs } from "../utils/mdx";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "All blogs - Sebas",

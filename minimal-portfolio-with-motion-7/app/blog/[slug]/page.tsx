@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: blog.frontmatter.title,
+    title: blog.frontmatter.title + " Sebas ",
     description: blog.frontmatter.description,
   };
 }
