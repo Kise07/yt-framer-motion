@@ -50,7 +50,7 @@ export const getBlogs = async () => {
   return allBlogs;
 };
 
-const getBlogFrontmatterBySlug = async (slug: string) => {
+export const getBlogFrontmatterBySlug = async (slug: string) => {
   const singleBlog = await fs.readFile(
     path.join(process.cwd(), "app/data", `${slug}.mdx`),
     "utf-8",

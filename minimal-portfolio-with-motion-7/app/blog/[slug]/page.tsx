@@ -1,5 +1,5 @@
 import { Container } from "@/app/components/container";
-import { getSingleBlog } from "@/app/utils/mdx";
+import { getSingleBlog, getBlogFrontmatterBySlug } from "@/app/utils/mdx";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -9,21 +9,20 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const blog = await getSingleBlog(slug);
+  const frontmatter = await getBlogFrontmatterBySlug(slug);
 
-  if (!blog) {
+  if (!frontmatter) {
     return { title: "Blog not found" };
   }
 
   return {
-    title: blog.frontmatter.title + " Sebas ",
-    description: blog.frontmatter.description,
+    title: frontmatter.title + " - Sebas",
+    description: frontmatter.description,
   };
 }
 
 export default async function SingleBlogPage({ params }: Props) {
   const { slug } = await params;
-
   const blog = await getSingleBlog(slug);
 
   if (!blog) {
@@ -31,7 +30,6 @@ export default async function SingleBlogPage({ params }: Props) {
   }
 
   const { content, frontmatter } = blog;
-  console.log("Frontmatter:", frontmatter);
 
   return (
     <div className="flex min-h-screen items-start justify-start">
