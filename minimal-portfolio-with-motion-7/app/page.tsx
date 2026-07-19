@@ -1,5 +1,6 @@
-import { Container } from "./components/container";
-import { Projects } from "./components/projects";
+import { Container } from "@/app/components/container";
+import { LandingBlogs } from "@/app/components/landing-blogs";
+import { Projects } from "@/app/components/projects";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           development, UI/UX design, and web development.
         </p>
         <Projects />
+        <LandingBlogs />
       </Container>
     </div>
   );
