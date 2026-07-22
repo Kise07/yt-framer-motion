@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/navbar";
 import { ViewTransitions } from "next-view-transitions";
+import { Footer } from "./components/navbar/footer";
+import { Toaster } from "sonner";
 
 const inter = Inter({ weight: ["400", "500", "600", "700", "800", "900"] });
 
@@ -25,7 +27,9 @@ export default function RootLayout({
       >
         <body>
           <Navbar />
+          <Toaster position="top-center" />
           {children}
+          <Footer />
         </body>
       </html>
     </ViewTransitions>
