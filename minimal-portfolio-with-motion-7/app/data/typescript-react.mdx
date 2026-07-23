@@ -1,0 +1,88 @@
+---
+title: "TypeScript Best Practices for React"
+description: "Master TypeScript in React projects with practical tips on typing props, hooks, events, and API responses. Learn patterns that catch bugs early and improve developer experience."
+image: "/ace-js.webp"
+date: "2026-07-08"
+---
+
+# TypeScript Best Practices for React
+
+TypeScript has become the standard for large-scale React development. Proper typing catches bugs at compile time, improves IDE autocomplete, and serves as living documentation. However, many developers either over-type or under-type their components. This guide covers practical patterns that balance type safety with developer experience.
+
+## Typing Props Correctly
+
+Always define explicit interfaces for component props. Avoid inline types for reusable components:
+
+```tsx
+// ✅ Good — explicit interface
+interface ButtonProps {
+  label: string;
+  variant?: "primary" | "secondary";
+  onClick: () => void;
+}
+
+function Button({ label, variant = "primary", onClick }: ButtonProps) {
+  return <button className={`btn btn-${variant}`}>{label}</button>;
+}
+
+// ❌ Bad — inline type, hard to reuse
+function Button({ label, variant, onClick }: { label: string; variant?: string; onClick: () => void }) {}
+```
+
+## Typing Events
+
+Use React's built-in event types instead of DOM event types:
+
+```tsx
+// ✅ Correct
+function Form({ onSubmit }: { onSubmit: (data: FormData) => void }) {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    onSubmit(data);
+  };
+  return <form onSubmit={handleSubmit}>...</form>;
+}
+```
+
+## Typing Hooks
+
+Custom hooks should return typed values. Use generics for flexible hooks:
+
+```tsx
+function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+  const [stored, setStored] = useState<T>(() => {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : initialValue;
+  });
+  return [stored, setStored];
+}
+```
+
+## Typing API Responses
+
+Define interfaces for your API responses. Never use `any`:
+
+```tsx
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+async function fetchUser(id: number): Promise<User> {
+  const res = await fetch(`/api/users/${id}`);
+  return res.json();
+}
+```
+
+## Common Mistakes to Avoid
+
+- Using `any` as a quick fix — it defeats the purpose of TypeScript
+- Over-typing internal state that doesn't need explicit types
+- Not using discriminated unions for complex state
+- Forgetting to type event handlers properly
+
+## Conclusion
+
+TypeScript in React is about finding the right balance. Type your public APIs (props, hook returns, event handlers) explicitly, and let TypeScript infer internal state. This approach catches real bugs without creating unnecessary friction.

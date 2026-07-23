@@ -1,0 +1,115 @@
+---
+title: "Modern CSS Techniques You Should Know"
+description: "Explore modern CSS features like container queries, cascade layers, subgrid, and color functions that are transforming how we write styles in 2026 and beyond."
+image: "/next-pic.webp"
+date: "2026-07-01"
+---
+
+# Modern CSS Techniques You Should Know
+
+CSS has evolved dramatically in recent years. Features that once required JavaScript or complex workarounds are now native to the language. This guide covers the most impactful modern CSS techniques that every frontend developer should understand.
+
+## Container Queries
+
+Container queries let you style elements based on their parent container's size, not the viewport. This is revolutionary for component-based design:
+
+```css
+.card-container {
+  container-type: inline-size;
+}
+
+@container (min-width: 400px) {
+  .card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+}
+```
+
+## Cascade Layers
+
+Layers give you explicit control over specificity. Define your layer order once and never worry about selector conflicts:
+
+```css
+@layer base, components, utilities;
+
+@layer base {
+  h1 { font-size: 2rem; }
+}
+
+@layer components {
+  .title { font-size: 1.5rem; }
+}
+```
+
+## CSS Nesting
+
+Native CSS nesting eliminates the need for preprocessors in many cases:
+
+```css
+.nav {
+  display: flex;
+  gap: 1rem;
+
+  & a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
+```
+
+## Color Functions
+
+Modern CSS color functions make working with colors intuitive:
+
+```css
+:root {
+  --primary: oklch(0.6 0.2 260);
+  --primary-light: oklch(from var(--primary) calc(l + 0.1) c h);
+  --primary-alpha: oklch(from var(--primary) l c h / 50%);
+}
+```
+
+## Subgrid
+
+Subgrid allows nested grids to align with their parent grid's tracks:
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.grid-item {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-row: span 3;
+}
+```
+
+## View Transitions
+
+The View Transitions API enables smooth page transitions in multi-page applications:
+
+```css
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: fade-out 0.3s ease-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.3s ease-in;
+}
+```
+
+## Conclusion
+
+These features are supported in all modern browsers. Start using them today to write cleaner, more maintainable CSS. The days of complex workarounds for simple styling problems are behind us.

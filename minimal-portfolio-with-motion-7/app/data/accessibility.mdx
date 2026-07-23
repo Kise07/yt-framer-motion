@@ -1,0 +1,69 @@
+---
+title: "Building Accessible Web Applications"
+description: "Learn the fundamentals of web accessibility (a11y), why it matters, and practical techniques to make your React applications usable by everyone regardless of ability."
+image: "/ace-js.webp"
+date: "2026-07-05"
+---
+
+# Building Accessible Web Applications
+
+Web accessibility isn't just a legal requirement — it's a fundamental aspect of building quality software. Over one billion people worldwide live with some form of disability. Building accessible applications means ensuring everyone can use your product, regardless of how they interact with the web.
+
+## Why Accessibility Matters
+
+Beyond the moral imperative, accessible applications have better SEO, work better on mobile devices, and often have better performance. Accessible code is typically more semantic, which improves both machine readability and human maintainability.
+
+## Core Principles
+
+### Semantic HTML
+
+Use HTML elements for their intended purpose. A `<button>` is not just a styled `<div>`:
+
+```tsx
+// ❌ Inaccessible
+<div className="btn" onClick={handleClick}>Click me</div>
+
+// ✅ Accessible
+<button onClick={handleClick}>Click me</button>
+```
+
+### ARIA Labels
+
+When semantic HTML isn't enough, ARIA attributes bridge the gap:
+
+```tsx
+<button aria-label="Close dialog" onClick={onClose}>
+  <CloseIcon />
+</button>
+
+<nav aria-label="Main navigation">
+  <ul>...</ul>
+</nav>
+```
+
+### Keyboard Navigation
+
+All interactive elements must be keyboard accessible. Ensure focus states are visible and tab order is logical:
+
+```tsx
+function Modal({ isOpen, onClose, children }) {
+  return isOpen ? (
+    <div role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Title</h2>
+      {children}
+      <button onClick={onClose}>Close</button>
+    </div>
+  ) : null;
+}
+```
+
+## Testing Accessibility
+
+- Use browser dev tools to check contrast ratios
+- Test keyboard navigation manually
+- Run automated tools like axe or Lighthouse
+- Test with screen readers (VoiceOver, NVDA)
+
+## Conclusion
+
+Accessibility is not a feature you add at the end — it's a mindset you adopt from the start. By building with semantic HTML, proper ARIA attributes, and keyboard support, you create applications that work for everyone.

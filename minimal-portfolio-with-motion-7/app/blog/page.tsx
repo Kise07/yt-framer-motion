@@ -26,7 +26,7 @@ export default async function blogspage() {
           beautiful and functional user experiences. I specialize in front-end
           development, UI/UX design, and web development.
         </Subheading>
-        <div className="flex flex-col gap-4 py-10">
+        <div className="flex flex-col gap-8 py-10">
           {allBlogs.map((blog, idx) => (
             <Link key={idx} href={`/blog/${blog.slug}`}>
               <div className="flex items-center justify-between">

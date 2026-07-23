@@ -1,0 +1,101 @@
+---
+title: "Performance Optimization in Next.js"
+description: "Discover proven techniques to optimize your Next.js application for speed, including image optimization, code splitting, caching strategies, and Core Web Vitals improvements."
+image: "/next-pic.webp"
+date: "2026-06-28"
+---
+
+# Performance Optimization in Next.js
+
+Performance directly impacts user experience, SEO rankings, and conversion rates. Next.js provides many built-in optimizations, but understanding how to leverage them effectively is key to building fast applications.
+
+## Image Optimization
+
+The `next/image` component handles responsive images, lazy loading, and format conversion automatically:
+
+```tsx
+import Image from "next/image";
+
+<Image
+  src="/photo.jpg"
+  width={800}
+  height={600}
+  alt="Description"
+  placeholder="blur"
+  priority={true}
+/>
+```
+
+Key props: `priority` for above-the-fold images, `placeholder="blur"` for better perceived performance, and `sizes` for responsive images.
+
+## Code Splitting
+
+Next.js automatically code-splits at the route level. For finer control, use dynamic imports:
+
+```tsx
+import dynamic from "next/dynamic";
+
+const HeavyChart = dynamic(() => import("./HeavyChart"), {
+  loading: () => <p>Loading chart...</p>,
+  ssr: false,
+});
+```
+
+## Caching Strategies
+
+### Static Data
+
+For data that rarely changes, use `revalidate`:
+
+```tsx
+export const revalidate = 3600; // Revalidate every hour
+
+async function Page() {
+  const data = await fetch("https://api.example.com/data", {
+    next: { revalidate: 3600 },
+  });
+  // ...
+}
+```
+
+### Dynamic Data
+
+For real-time data, disable caching:
+
+```tsx
+const data = await fetch("https://api.example.com/data", {
+  cache: "no-store",
+});
+```
+
+## Font Optimization
+
+Use `next/font` to load fonts without layout shift:
+
+```tsx
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
+<html className={inter.className}>
+```
+
+## Core Web Vitals
+
+| Metric | What It Measures | Target |
+|--------|-----------------|--------|
+| LCP | Largest Contentful Paint | < 2.5s |
+| FID | First Input Delay | < 100ms |
+| CLS | Cumulative Layout Shift | < 0.1 |
+
+## Bundle Analysis
+
+Use `@next/bundle-analyzer` to identify large dependencies:
+
+```bash
+ANALYZE=true npm run build
+```
+
+## Conclusion
+
+Performance optimization is an ongoing process, not a one-time task. Profile your application regularly, set performance budgets, and measure against Core Web Vitals to ensure your users always have the best experience.

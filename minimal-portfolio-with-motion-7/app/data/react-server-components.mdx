@@ -1,0 +1,51 @@
+---
+title: "React Server Components Explained"
+description: "Understand React Server Components, how they work with Next.js App Router, and why they represent a fundamental shift in how we think about rendering in React applications."
+image: "/next-pic.webp"
+date: "2026-07-10"
+---
+
+# React Server Components Explained
+
+React Server Components (RSC) represent one of the most significant architectural changes in React since hooks. They allow components to render on the server, sending only the HTML and minimal JavaScript to the client. This approach fundamentally changes how we think about data fetching, bundle size, and performance in React applications.
+
+## What Are Server Components?
+
+Server Components run exclusively on the server. They can directly access databases, file systems, and other server-side resources without building API endpoints. The rendered output is sent to the client as a special format that React can hydrate without sending the component's JavaScript bundle.
+
+In Next.js App Router, all components are Server Components by default. You opt into client-side rendering by adding the `"use client"` directive at the top of a file.
+
+## Key Benefits
+
+**Zero Bundle Size** — Server Components don't add JavaScript to your client bundle. A component that fetches data from a database and renders a table contributes nothing to your client-side JavaScript.
+
+**Direct Data Access** — No useEffect, no loading states, no API routes. Server Components can `await` async operations directly:
+
+```tsx
+async function BlogPosts() {
+  const posts = await db.posts.findMany();
+  return posts.map(post => <PostCard key={post.id} post={post} />);
+}
+```
+
+**Automatic Code Splitting** — The framework handles what runs on the server versus the client, eliminating complex manual configuration.
+
+## Server Components vs Client Components
+
+| Feature | Server Component | Client Component |
+|---------|-----------------|------------------|
+| Runs on | Server only | Server + Client |
+| Access databases | Directly | Via API |
+| Use hooks | No | Yes |
+| Bundle impact | None | Adds JS |
+| Interactivity | No | Yes |
+
+## When to Use Each
+
+Use Server Components for: data fetching, content rendering, SEO-critical pages, and anything that doesn't need user interaction.
+
+Use Client Components for: forms, animations, state management, browser APIs, and event handlers.
+
+## Conclusion
+
+Server Components aren't replacing Client Components — they're complementing them. The best applications use both strategically, keeping client-side JavaScript minimal while maximizing performance and developer experience.
