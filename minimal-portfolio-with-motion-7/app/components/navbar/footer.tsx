@@ -8,7 +8,7 @@ import {
 
 export const Footer = () => {
   return (
-    <Container className="flex justify-between border-t border-neutral-100 p-3">
+    <Container className="flex justify-between border-t border-neutral-100 px-10 py-3">
       <p className="text-xs text-neutral-500">Build with love by Sebas</p>
       <div className="flex items-center justify-center gap-4">
         <Link href="https://x.com/kise07">

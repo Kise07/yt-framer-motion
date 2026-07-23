@@ -4,6 +4,7 @@ import { Projects } from "@/app/components/projects";
 import { Heading } from "@/app/components/heading";
 import { Subheading } from "@/app/components/subheading";
 import { projects } from "@/app/constants/projects";
+import { Testimonials } from "@/app/components/testimonials";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         </Subheading>
         <Projects projects={projects.slice(0, 3)} />
         <LandingBlogs />
+        <Testimonials />
       </Container>
     </div>
   );
