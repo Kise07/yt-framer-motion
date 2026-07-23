@@ -1,8 +1,9 @@
 import { Container } from "@/app/components/container";
 import { LandingBlogs } from "@/app/components/landing-blogs";
 import { Projects } from "@/app/components/projects";
-import { Heading } from "./components/heading";
-import { Subheading } from "./components/subheading";
+import { Heading } from "@/app/components/heading";
+import { Subheading } from "@/app/components/subheading";
+import { projects } from "@/app/constants/projects";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
           beautiful and functional user experiences. I specialize in front-end
           development, UI/UX design, and web development.
         </Subheading>
-        <Projects />
+        <Projects projects={projects.slice(0, 3)} />
         <LandingBlogs />
       </Container>
     </div>
