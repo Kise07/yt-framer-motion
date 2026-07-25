@@ -2,11 +2,13 @@ import { Container } from "@/app/components/container";
 import { Heading } from "@/app/components/heading";
 import { Subheading } from "@/app/components/subheading";
 import { ContactForm } from "../components/contact-form";
+import { Scales } from "@/components/scales";
 
 export default function ContactPage() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-12 md:pt-20 md:pb-10">
+      <Container className="min-h-screen px-8 md:pt-20 md:pb-10">
+        <Scales />
         <Heading>Contact Me</Heading>
         <Subheading>
           I&apos;m open to relocate and looking for new opportunities. If

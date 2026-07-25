@@ -1,5 +1,6 @@
 import { Container } from "@/app/components/container";
 import { getSingleBlog, getBlogFrontmatterBySlug } from "@/app/utils/mdx";
+import { Scales } from "@/components/scales";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -33,7 +34,8 @@ export default async function SingleBlogPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-12 md:pt-20 md:pb-10">
+      <Container className="min-h-screen px-8 md:pt-20 md:pb-10">
+        <Scales />
         <img
           src={frontmatter.image}
           alt={frontmatter.title}

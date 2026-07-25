@@ -100,7 +100,10 @@ export const Timeline = () => {
   ];
 
   return (
-    <div ref={ref} className="py-10">
+    <div
+      ref={ref}
+      className="shadow-section-inset my-6 border-y border-neutral-100 px-4 py-4"
+    >
       {data.map((year, index) => (
         <div key={year.title} className="mb-4">
           <motion.h2

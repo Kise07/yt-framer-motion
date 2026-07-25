@@ -4,6 +4,7 @@ import { getBlogs } from "../utils/mdx";
 import { Link } from "next-view-transitions";
 import { Heading } from "../components/heading";
 import { Subheading } from "../components/subheading";
+import { Scales } from "@/components/scales";
 
 export const metadata: Metadata = {
   title: "All blogs - Sebas",
@@ -19,14 +20,15 @@ export default async function blogspage() {
   };
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-12 md:pt-20 md:pb-10">
+      <Container className="min-h-screen px-8 md:pt-20 md:pb-10">
+        <Scales />
         <Heading>All blogs</Heading>
         <Subheading>
           I&apos;m a software engineer and designer with a passion for creating
           beautiful and functional user experiences. I specialize in front-end
           development, UI/UX design, and web development.
         </Subheading>
-        <div className="flex flex-col gap-8 py-10">
+        <div className="flex flex-col gap-8 px-4 py-10">
           {allBlogs.map((blog, idx) => (
             <Link key={idx} href={`/blog/${blog.slug}`}>
               <div className="flex items-center justify-between">

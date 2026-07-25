@@ -10,7 +10,7 @@ export const Projects = ({
   projects?: Project[];
 }) => {
   return (
-    <div className="py-10">
+    <div className="shadow-section-inset my-4 border-y border-neutral-100 px-4">
       <SectionHeading delay={0.2}>A lifetime in projects</SectionHeading>
       <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
         {projects.map((project, idx) => (

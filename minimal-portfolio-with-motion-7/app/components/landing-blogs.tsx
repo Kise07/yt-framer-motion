@@ -10,8 +10,8 @@ export const LandingBlogs = async () => {
     return str.length > length ? str.substring(0, length) + "..." : str;
   };
   return (
-    <div>
-      <SectionHeading className="pb-4" delay={0.4}>
+    <div className="px-4">
+      <SectionHeading className="mb-4" delay={0.4}>
         I love writing things down
       </SectionHeading>
 

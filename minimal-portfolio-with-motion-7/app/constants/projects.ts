@@ -30,4 +30,16 @@ export const projects: Project[] = [
     description: "Fey.com Macbook Scroll",
     href: "#",
   },
+  {
+    title: "Dashboard UI",
+    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    description: "Analytics dashboard with real-time data visualization",
+    href: "#",
+  },
+  {
+    title: "Mobile App",
+    src: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop",
+    description: "Cross-platform mobile application design",
+    href: "#",
+  },
 ];
