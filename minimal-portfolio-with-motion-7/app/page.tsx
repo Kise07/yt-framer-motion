@@ -5,11 +5,13 @@ import { Heading } from "@/app/components/heading";
 import { Subheading } from "@/app/components/subheading";
 import { projects } from "@/app/constants/projects";
 import { Testimonials } from "@/app/components/testimonials";
+import { Scales } from "@/components/scales";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pt-20 md:pb-10">
+      <Container className="min-h-screen px-12 md:pt-20 md:pb-10">
+        <Scales />
         <Heading>Tyler Durden</Heading>
         <Subheading>
           I&apos;m a software engineer and designer with a passion for creating

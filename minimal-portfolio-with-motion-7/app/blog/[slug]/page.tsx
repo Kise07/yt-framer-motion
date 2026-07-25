@@ -33,7 +33,7 @@ export default async function SingleBlogPage({ params }: Props) {
 
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pt-20 md:pb-10">
+      <Container className="min-h-screen px-12 md:pt-20 md:pb-10">
         <img
           src={frontmatter.image}
           alt={frontmatter.title}

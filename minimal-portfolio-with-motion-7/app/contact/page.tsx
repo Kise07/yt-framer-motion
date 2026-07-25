@@ -6,7 +6,7 @@ import { ContactForm } from "../components/contact-form";
 export default function ContactPage() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pt-20 md:pb-10">
+      <Container className="min-h-screen px-12 md:pt-20 md:pb-10">
         <Heading>Contact Me</Heading>
         <Subheading>
           I&apos;m open to relocate and looking for new opportunities. If
