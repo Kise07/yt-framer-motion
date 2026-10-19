@@ -71,7 +71,7 @@ export const Card = () => {
               <motion.div
                 initial={{
                   opacity: 0,
-                  sclae: 0.98,
+                  scale: 0.98,
                   filter: "blur(10px)",
                 }}
                 whileHover={{

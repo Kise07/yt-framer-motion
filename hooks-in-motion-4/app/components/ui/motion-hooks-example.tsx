@@ -35,7 +35,7 @@ export function MotionHooksExample() {
         background,
       }}
       transition={{
-        dureation: 1,
+        duration: 1,
         ease: "easeInOut",
       }}
       className="flex min-h-screen items-center justify-center bg-neutral-900"
